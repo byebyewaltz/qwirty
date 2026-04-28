@@ -34,7 +34,7 @@ you can refer to the name of that font in the `font-family` property in your CSS
 Google Fonts also provides an [icon font](https://fonts.google.com/icons)!
 
 1. Select an icon that you want to use.
-2. Add the provided `<link>` element in the `<head>` of your HTML.
+2. Add the provided `<link>` element in the `<head>` of your HTML. 
 3. Add the provided CSS rule to your CSS.
 4. Insert the icon as a `<span>` with the provided class.
    The text contents of that span should match the icon you want to use.
