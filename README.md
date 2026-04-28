@@ -23,7 +23,7 @@ While you are free to tackle this however you'd like, here are some tips:
   as much as you can from scratch first!
 
 ### Use an external font
-
+ 
 [Google Fonts](https://fonts.google.com/) is a popular resource where you can get
 external fonts to use in your website. After selecting a font, **get embed code**
 to get `<link>` elements to add in the `<head>` of your HTML. Once that is done,
