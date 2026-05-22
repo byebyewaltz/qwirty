@@ -11,70 +11,110 @@
 </head>
 <body>
 
-<!-- ── Top Navigation Bar ── -->
-<nav class="topbar">
-  <div class="topbar-left">
-    <a href="#">Big Deals</a>
-    <a href="#">Top Brands</a>
-    <a href="#">Suggestions</a>
-    <a href="#">Help &amp; Contact</a>
-  </div>
-  <div class="topbar-right">
-    <a href="#">Log In/Sign Up</a>
-    <a href="#">Account</a>
-    <a href="#" aria-label="Shopping cart"><span class="cart-icon">🛒</span></a>
-  </div>
-</nav>
+<!-- ══ HEADER (two rows) ══════════════════════════════════════════════════ -->
+<header class="site-header">
 
-<!-- ── Header / Search ── -->
-<header class="header">
-  <a href="#" class="logo">Qwirty</a>
-  <div class="search-bar">
-    <input type="text" placeholder="Search for..." aria-label="Search products" id="search-input" />
-    <button aria-label="Submit search">🔍</button>
+  <!-- Row 1: brand + account links -->
+  <div class="header-row1">
+    <a href="#" class="logo">Qwirty</a>
+    <nav class="header-links" aria-label="Site navigation">
+      <a href="#">Big Deals</a>
+      <a href="#">Top Brands</a>
+      <a href="#">Suggestions</a>
+      <a href="#">Help &amp; Contact</a>
+      <a href="#">Log In / Sign Up</a>
+      <a href="#">Account</a>
+      <a href="#" aria-label="Cart">&#128722;</a>
+    </nav>
   </div>
+
+  <!-- Row 2: search bar -->
+  <div class="header-row2">
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search for..." aria-label="Search products" />
+      <button type="button" aria-label="Search">&#128269;</button>
+    </div>
+  </div>
+
 </header>
 
-<!-- ── Main Body ── -->
+<!-- ══ BODY LAYOUT ════════════════════════════════════════════════════════ -->
 <div class="body-layout">
 
-  <!-- Sidebar Categories -->
+  <!-- Sidebar -->
   <aside class="sidebar" aria-label="Product categories">
-    <a class="sidebar-item active" href="#" data-category="all">Clothing &amp; Shoes</a>
-    <a class="sidebar-item" href="#" data-category="electronics">Electronics</a>
-    <a class="sidebar-item" href="#" data-category="books">Books</a>
-    <a class="sidebar-item" href="#" data-category="food">Food &amp; Drinks</a>
-    <a class="sidebar-item" href="#" data-category="appliances">Appliances</a>
-    <a class="sidebar-item" href="#" data-category="sports">Sports &amp; Outdoor</a>
-    <a class="sidebar-item" href="#" data-category="toys">Toys &amp; Baby</a>
-    <a class="sidebar-item" href="#" data-category="garden">Garden</a>
+    <a class="sidebar-item active" href="#" data-cat="all">Clothing &amp; Shoes</a>
+    <a class="sidebar-item" href="#" data-cat="electronics">Electronics</a>
+    <a class="sidebar-item" href="#" data-cat="books">Books</a>
+    <a class="sidebar-item" href="#" data-cat="food">Food &amp; Drinks</a>
+    <a class="sidebar-item" href="#" data-cat="appliances">Appliances</a>
+    <a class="sidebar-item" href="#" data-cat="sports">Sports &amp; Outdoor</a>
+    <a class="sidebar-item" href="#" data-cat="toys">Toys &amp; Baby</a>
+    <a class="sidebar-item" href="#" data-cat="garden">Garden</a>
   </aside>
 
-  <!-- Product Grid -->
+  <!-- Product grid -->
   <main class="product-area">
     <div class="product-grid" id="product-grid"></div>
   </main>
 
 </div>
 
-<!-- Cart Toast Notification -->
+<!-- ══ FOOTER ════════════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+
+    <div class="footer-group">
+      <h3>Get to Know Us</h3>
+      <a href="#">About Qwirty</a>
+      <a href="#">Careers</a>
+      <a href="#">Press Releases</a>
+      <a href="#">Investor Relations</a>
+    </div>
+
+    <div class="footer-group">
+      <h3>Make Money With Us</h3>
+      <a href="#">Sell Products</a>
+      <a href="#">Become an Affiliate</a>
+      <a href="#">Advertise Your Products</a>
+      <a href="#">Supplier Portal</a>
+    </div>
+
+    <div class="footer-group">
+      <h3>Payment &amp; Shipping</h3>
+      <a href="#">Qwirty Pay</a>
+      <a href="#">Gift Cards</a>
+      <a href="#">Shipping Rates &amp; Policies</a>
+      <a href="#">Track Your Order</a>
+    </div>
+
+    <div class="footer-group">
+      <h3>Let Us Help You</h3>
+      <a href="#">Your Account</a>
+      <a href="#">Returns &amp; Replacements</a>
+      <a href="#">Help Center</a>
+      <a href="#">Cookie Preferences</a>
+    </div>
+
+  </div>
+  <div class="footer-bottom">
+    <span class="logo-small">Qwirty</span>
+    <span>&copy; 2026 Qwirty, Inc. All rights reserved.</span>
+  </div>
+</footer>
+
+<!-- Toast -->
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<!-- ══ SCRIPT ════════════════════════════════════════════════════════════ -->
 <script>
-  const products = [
-    { id: 1,  name: "Product Name", price: 27.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
-    { id: 2,  name: "Product Name", price: 27.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
-    { id: 3,  name: "Product Name", price: 27.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
-    { id: 4,  name: "Product Name", price: 27.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
-    { id: 5,  name: "Product Name", price: 27.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
-    { id: 6,  name: "Product Name", price: 27.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
-    { id: 7,  name: "Product Name", price: 27.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
-    { id: 8,  name: "Product Name", price: 27.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
-    { id: 9,  name: "Product Name", price: 49.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
-    { id: 10, name: "Product Name", price: 14.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
-    { id: 11, name: "Product Name", price: 99.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
-    { id: 12, name: "Product Name", price: 27.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
-  ];
+  const products = Array.from({ length: 12 }, (_, i) => ({
+    id: i + 1,
+    name: "Product Name",
+    price: [27.99, 14.99, 49.99, 99.99][i % 4],
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!",
+    img: `https://picsum.photos/seed/${i + 10}/400/225`
+  }));
 
   const grid  = document.getElementById('product-grid');
   const toast = document.getElementById('toast');
@@ -82,6 +122,10 @@
 
   function renderCards(list) {
     grid.innerHTML = '';
+    if (!list.length) {
+      grid.innerHTML = '<p class="no-results">No products found.</p>';
+      return;
+    }
     list.forEach(p => {
       const card = document.createElement('article');
       card.className = 'card';
@@ -89,13 +133,12 @@
         <div class="card-header">
           <h2 class="card-title">${p.name}</h2>
         </div>
-        <div class="card-image-placeholder" role="img" aria-label="Product image"></div>
+        <img class="card-img" src="${p.img}" alt="${p.name}" loading="lazy" />
         <p class="card-desc">${p.desc}</p>
         <div class="card-footer">
           <span class="card-price"><span>Price: </span>$${p.price.toFixed(2)}</span>
-          <button class="btn-cart" aria-label="Add ${p.name} to cart" data-id="${p.id}">🛒</button>
-        </div>
-      `;
+          <button class="btn-cart" aria-label="Add to cart" data-id="${p.id}">&#128722;</button>
+        </div>`;
       grid.appendChild(card);
     });
   }
@@ -104,19 +147,16 @@
     toast.textContent = msg;
     toast.classList.add('show');
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
   }
 
-  // Add to cart
   grid.addEventListener('click', e => {
     const btn = e.target.closest('.btn-cart');
     if (!btn) return;
-    const id = +btn.dataset.id;
-    const product = products.find(p => p.id === id);
-    if (product) showToast(`Added "${product.name}" — $${product.price.toFixed(2)} to cart`);
+    const p = products.find(x => x.id === +btn.dataset.id);
+    if (p) showToast(`Added "${p.name}" ($${p.price.toFixed(2)}) to cart`);
   });
 
-  // Sidebar category filter (active state only — extend with real filter logic as needed)
   document.querySelectorAll('.sidebar-item').forEach(item => {
     item.addEventListener('click', e => {
       e.preventDefault();
@@ -125,18 +165,12 @@
     });
   });
 
-  // Search filter
   document.getElementById('search-input').addEventListener('input', e => {
     const q = e.target.value.toLowerCase();
-    const filtered = q
-      ? products.filter(p => p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q))
-      : products;
-    renderCards(filtered);
+    renderCards(q ? products.filter(p => p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)) : products);
   });
 
-  // Initial render
   renderCards(products);
 </script>
-
 </body>
 </html>
