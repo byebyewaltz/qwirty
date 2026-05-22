@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Qwirty — Shop Everything</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Source+Sans+3:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+<!-- ── Top Navigation Bar ── -->
+<nav class="topbar">
+  <div class="topbar-left">
+    <a href="#">Big Deals</a>
+    <a href="#">Top Brands</a>
+    <a href="#">Suggestions</a>
+    <a href="#">Help &amp; Contact</a>
+  </div>
+  <div class="topbar-right">
+    <a href="#">Log In/Sign Up</a>
+    <a href="#">Account</a>
+    <a href="#" aria-label="Shopping cart"><span class="cart-icon">🛒</span></a>
+  </div>
+</nav>
+
+<!-- ── Header / Search ── -->
+<header class="header">
+  <a href="#" class="logo">Qwirty</a>
+  <div class="search-bar">
+    <input type="text" placeholder="Search for..." aria-label="Search products" id="search-input" />
+    <button aria-label="Submit search">🔍</button>
+  </div>
+</header>
+
+<!-- ── Main Body ── -->
+<div class="body-layout">
+
+  <!-- Sidebar Categories -->
+  <aside class="sidebar" aria-label="Product categories">
+    <a class="sidebar-item active" href="#" data-category="all">Clothing &amp; Shoes</a>
+    <a class="sidebar-item" href="#" data-category="electronics">Electronics</a>
+    <a class="sidebar-item" href="#" data-category="books">Books</a>
+    <a class="sidebar-item" href="#" data-category="food">Food &amp; Drinks</a>
+    <a class="sidebar-item" href="#" data-category="appliances">Appliances</a>
+    <a class="sidebar-item" href="#" data-category="sports">Sports &amp; Outdoor</a>
+    <a class="sidebar-item" href="#" data-category="toys">Toys &amp; Baby</a>
+    <a class="sidebar-item" href="#" data-category="garden">Garden</a>
+  </aside>
+
+  <!-- Product Grid -->
+  <main class="product-area">
+    <div class="product-grid" id="product-grid"></div>
+  </main>
+
+</div>
+
+<!-- Cart Toast Notification -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  const products = [
+    { id: 1,  name: "Product Name", price: 27.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
+    { id: 2,  name: "Product Name", price: 27.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
+    { id: 3,  name: "Product Name", price: 27.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
+    { id: 4,  name: "Product Name", price: 27.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
+    { id: 5,  name: "Product Name", price: 27.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
+    { id: 6,  name: "Product Name", price: 27.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
+    { id: 7,  name: "Product Name", price: 27.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
+    { id: 8,  name: "Product Name", price: 27.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
+    { id: 9,  name: "Product Name", price: 49.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
+    { id: 10, name: "Product Name", price: 14.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
+    { id: 11, name: "Product Name", price: 99.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
+    { id: 12, name: "Product Name", price: 27.99, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, corporis laboriosam nihil tempore esse, veniam sit vitae beatae natus debitis quae cumque sequi. Architecto dolore laudantium ad provident assumenda quae!" },
+  ];
+
+  const grid  = document.getElementById('product-grid');
+  const toast = document.getElementById('toast');
+  let toastTimer;
+
+  function renderCards(list) {
+    grid.innerHTML = '';
+    list.forEach(p => {
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="card-header">
+          <h2 class="card-title">${p.name}</h2>
+        </div>
+        <div class="card-image-placeholder" role="img" aria-label="Product image"></div>
+        <p class="card-desc">${p.desc}</p>
+        <div class="card-footer">
+          <span class="card-price"><span>Price: </span>$${p.price.toFixed(2)}</span>
+          <button class="btn-cart" aria-label="Add ${p.name} to cart" data-id="${p.id}">🛒</button>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+
+  // Add to cart
+  grid.addEventListener('click', e => {
+    const btn = e.target.closest('.btn-cart');
+    if (!btn) return;
+    const id = +btn.dataset.id;
+    const product = products.find(p => p.id === id);
+    if (product) showToast(`Added "${product.name}" — $${product.price.toFixed(2)} to cart`);
+  });
+
+  // Sidebar category filter (active state only — extend with real filter logic as needed)
+  document.querySelectorAll('.sidebar-item').forEach(item => {
+    item.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
+      item.classList.add('active');
+    });
+  });
+
+  // Search filter
+  document.getElementById('search-input').addEventListener('input', e => {
+    const q = e.target.value.toLowerCase();
+    const filtered = q
+      ? products.filter(p => p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q))
+      : products;
+    renderCards(filtered);
+  });
+
+  // Initial render
+  renderCards(products);
+</script>
+
+</body>
+</html>
